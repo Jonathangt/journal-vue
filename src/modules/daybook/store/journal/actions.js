@@ -6,7 +6,7 @@ export const myAction = async ( {{commit }} ) => {
 import journalApi from "@/api/journalApi"
 
 
-export const loadEntries = async ( { commit } ) => {
+export const loadEntries = async ({ commit }) => {
     const { data } = await journalApi.get('/entries.json')
 
     if ( !data ) {
@@ -32,7 +32,9 @@ export const updateEntry = async ( { commit }, payload ) => {
 
    await journalApi.put(`/entries/${payload.id}.json`, dataToSave )
 
-    commit('updateEntry', { ...payload })
+   dataToSave.id = payload.id
+
+    commit('updateEntry', { ...dataToSave })
 }
 
 export const createEntry = async ({ commit }, payload ) => {

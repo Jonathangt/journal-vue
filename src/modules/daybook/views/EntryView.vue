@@ -21,20 +21,20 @@
             </div>
         </div>
 
+        <hr>
+
+        <div class="d-flex flex-column px-3 h-75">
+            <textarea v-model="entry.text" placeholder="¿What happened today?"></textarea>
+        </div>
+
+        <img v-if="localImage" :src="localImage" class="img-thumbnail" alt="entry-picture">
+
+        <img v-if="entry.picture && !localImage" :src="entry.picture" class="img-thumbnail" alt="entry-picture">
+
     </template>
-   
-
-    <hr>
-
-    <div class="d-flex flex-column px-3 h-75">
-        <textarea v-model="entry.text" placeholder="¿What happened today?"></textarea>
-    </div>
 
     <Fab icon="fa-save" @on:click="saveEntry" />
-
-    <img v-if="localImage" :src="localImage" class="img-thumbnail" alt="entry-picture">
-
-    <img v-if="entry.picture && !localImage" :src="entry.picture" class="img-thumbnail" alt="entry-picture">
+       
 </template>
 
 <script>
@@ -48,6 +48,7 @@ import uploadImage from '../helpers/uploadImage'
 
 
 export default {
+    name: 'EntryView',
     props: {
         id: {
             type: String,
@@ -90,7 +91,7 @@ export default {
         loadEntry() {
             let entry;
 
-            if ( this.id == 'new') {
+            if ( this.id === 'new') {
                 entry = {
                     text:'',
                     date: new Date().getTime()
@@ -104,7 +105,7 @@ export default {
         },
 
         async saveEntry(){
-            new Swal({
+            Swal.fire({
                 title: 'Please wait',
                 allowOutsideClick: false
             })
@@ -139,7 +140,7 @@ export default {
             })
 
             if ( isConfirmed ) {
-                new Swal({
+                Swal.fire({
                     title: 'Please wait',
                     allowOutsideClick: false
                 })
@@ -181,8 +182,6 @@ export default {
             this.loadEntry()
         }
     }
-
-
 }
 </script>
 
@@ -205,4 +204,5 @@ img {
     right: 20px;
     box-shadow: 0px 5px 10px rgba($color: #000000, $alpha: 0.2);
 }
+
 </style>

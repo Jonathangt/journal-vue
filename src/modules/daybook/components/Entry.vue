@@ -18,10 +18,10 @@ const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', '
 const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
 
 export default {
-    props:{
-        entry:{
-            type:Object,
-            required:true,
+    props: {
+        entry: {
+            type: Object,
+            required: true
         }
     },
     computed:{
@@ -47,16 +47,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.entry-container{
+.entry-container {
     border-bottom: 1px solid #2c3e50;
     transition: 0.2s all aese-in;
 
-    &hover{
+    &hover {
         background-color: lighten($color: grey, $amount: 45);
         transition: 0.2s all aese-in;
     }
 
-    .entry-description{
+    .entry-description {
         font-size: 12px;
     }
 }
